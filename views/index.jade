@@ -1,0 +1,126 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title TRIPXP-shareyoureperience
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='Site Description Here')
+    link(href='/stylesheets/bootstrap.css', rel='stylesheet', type='text/css', media='all')
+    link(href='/stylesheets/stack-interface.css', rel='stylesheet', type='text/css', media='all')
+    link(href='/stylesheets/socicon.css', rel='stylesheet', type='text/css', media='all')
+    link(href='/stylesheets/lightbox.min.css', rel='stylesheet', type='text/css', media='all')
+    link(href='/stylesheets/flickity.css', rel='stylesheet', type='text/css', media='all')
+    link(href='/stylesheets/iconsmind.css', rel='stylesheet', type='text/css', media='all')
+    link(href='/stylesheets/jquery.steps.css', rel='stylesheet', type='text/css', media='all')
+    link(href='/stylesheets/theme.css', rel='stylesheet', type='text/css', media='all')
+    link(href='/stylesheets/custom.css', rel='stylesheet', type='text/css', media='all')
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700%7CMerriweather:300,300i%7CMaterial+Icons', rel='stylesheet')
+
+  body
+    a#start
+    // end bar
+    nav#menu1.bar.bar--sm.bar-1.hidden-xs
+      .container
+        .row
+          .col-md-1.col-sm-2.hidden-xs
+            .bar__module
+              a(href='index.html')
+               
+            // end module
+         .bar__module(style='float:right;')
+            a.btn.btn--sm.btn--primary.type--uppercase(href='/users/logout')
+              span.btn__text
+                | Logout
+        .bar__module(style='float:right;')
+            a.btn.btn--sm.btn--primary.type--uppercase(href='/posts/add')
+              span.btn__text
+                | Add Post/question
+        .bar__module(style='float:right;')
+            a.btn.btn--sm.btn--primary.type--uppercase(href='/abcd')
+              span.btn__text
+                | Question
+        
+    // end bar
+    .main-container
+      section
+        .container
+          .row
+            .col-sm-10.col-md-8.col-sm-offset-1.col-md-offset-2
+              article
+              if posts 
+                each post,i in posts
+                    .article__title.text-center
+                      h1.h2  
+                        a(href='/posts/show/#{post._id}')=post.title
+                      span #{moment(post.date).format("MM-DD-YYYY")} in 
+                      span
+                        a(href='/categories/show/#{post.category}') #{post.category} 
+                        span by 
+                        a(href='/categories/shows/#{post.author}')  #{post.author} 
+                   
+                    
+                    !=truncateText(post.body, 400)
+                    br
+                    a.more(href='/posts/show/#{post._id}') Read more
+                    
+                        form(method='post',action='/upvote/blogvote')
+                                    input(name='blogid',type='hidden',value='#{post._id}')
+                                    .form-group
+                                    input(name='author',type='hidden',value='#{user._id}')
+                                    input.btn.btn-primary(name='submit',style='margin-bottom:10px;width: 50px;left:calc(85%);',type='submit',value='vote #{post.count}')
+            
+        .container
+          .row
+            .col-sm-12
+              hr
+          // end of row
+        // end of container
+     
+      footer.footer-3.text-center-xs.space--xs
+        .container
+          .row
+            .col-sm-6
+              img.logo(alt='Image', src='img/logo-dark.png')
+              ul.list-inline.list--hover
+                li
+                  a(href='#')
+                    span.type--fine-print Someone's Story
+                li
+                  a(href='#')
+                    span.type--fine-print tripxp@gmail.com
+            .col-sm-6.text-right.text-center-xs
+              ul.social-list.list-inline.list--hover
+                li
+                  a(href='#')
+                    i.socicon.socicon-google.icon.icon--xs
+                li
+                  a(href='#')
+                    i.socicon.socicon-twitter.icon.icon--xs
+                li
+                  a(href='#')
+                    i.socicon.socicon-facebook.icon.icon--xs
+                li
+                  a(href='#')
+                    i.socicon.socicon-instagram.icon.icon--xs
+          // end of row
+        // end of row
+    // end of container
+    // <div class="loader"></div>
+    a.back-to-top.inner-link(href='#start', data-scroll-class='100vh:active')
+      i.stack-interface.stack-up-open-big
+    script(href='/javascripts/jquery-3.1.1.min.js').
+    script(href='/javascripts/flickity.min.js').
+    script(href='/javascripts/easypiechart.min.js').
+    script(href='/javascripts/parallax.js').
+    script(href='/javascripts/typed.min.js').
+    script(href='/javascripts/datepicker.js').
+    script(href='/javascripts/isotope.min.js').
+    script(href='/javascripts/ytplayer.min.js').
+    script(href='/javascripts/lightbox.min.js').
+    script(href='/javascripts/granim.min.js').
+    script(href='/javascripts/jquery.steps.min.js').
+    script(href='/javascripts/countdown.min.js').
+    script(href='/javascripts/twitterfetcher.min.js').
+    script(href='/javascripts/spectragram.min.js').
+    script(href='/javascripts/smooth-scroll.min.js').
+    script(href='/javascripts/scripts.js').
